@@ -4,6 +4,9 @@
       <router-link to="/">Home</router-link> | <router-link to="/about">About</router-link> |
       <router-link to="/update">Update</router-link>
     </div>
+    <div>
+      <h1>STUDENT PORTAL!!!!!! YAAAASSS MY FAV!! </h1>
+    </div>
     <router-view />
   </div>
 </template>
