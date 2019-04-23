@@ -9,7 +9,7 @@
     </div>
     <div>
       <h1>STUDENT PORTAL!!!!!! YAAAASSS MY FAV!!</h1>
-      <h3>Here we go!!!!</h3>
+      <!-- <h3>Here we go!!!!</h3> -->
     </div>
     <router-view />
   </div>
