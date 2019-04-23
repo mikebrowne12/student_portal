@@ -1,22 +1,27 @@
 <template>
   <div class="container">
-    <h1>{{ student.first_name }} {{ student.last_name }}</h1>
-
-    <p>{{ student.email }}</p>
-    <p>{{ student.phone_number }}</p>
-    <p>{{ student.short_bio }}</p>
-    <p>{{ student.linkedin_url }}</p>
-    <p>{{ student.twitter_handle }}</p>
-    <p>{{ student.personal_website }}</p>
-    <p>{{ student.online_resume_url }}</p>
-    <p>{{ student.github_url }}</p>
+    <div class="student-info">
+      <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+      <p>{{ student.email }} | {{ student.phone_number }}</p>
+      <p>{{ student.short_bio }}</p>
+      <p>
+        {{ student.linkedin_url }} | {{ student.twitter_handle }} | {{ student.personal_website }} |
+        {{ student.online_resume_url }} | {{ student.github_url }}
+      </p>
+      <button v-on:click="editSection('info')">Edit</button>
+    </div>
+    <div class="experience"></div>
+    <h1></h1>
+    <div class="education"></div>
+    <div class="skills"></div>
+    <div class="capstone"></div>
   </div>
 </template>
 
 <script>
+import axios from "axios";
 export default {
   name: "home",
-  components: {},
   data: function() {
     return {
       student: {
@@ -32,6 +37,14 @@ export default {
         github_url: "github.com/brandon"
       }
     };
+  },
+  // created: function() {
+  //   axios.get("/api/students/" + this.$route.current_user.id).then(response => {
+  //     this.student = response.data;
+  //   });
+  // },
+  methods: {
+    // editSection: function(section) {}
   }
 };
 </script>
