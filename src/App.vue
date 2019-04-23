@@ -5,12 +5,7 @@
       |
       <router-link to="/about">About</router-link>
       |
-      <router-link to="/update">Update</router-link>
-    </div>
-    <div>
-      <h1>STUDENT PORTAL!!!!!! YAAAASSS MY FAV!!</h1>
-      <h3>Here we go!!!!</h3>
-      <h4>Ruby on the Rocks!</h4>
+      <router-link to="/login">Login</router-link>
     </div>
     <router-view />
   </div>
