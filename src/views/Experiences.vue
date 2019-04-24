@@ -1,7 +1,20 @@
 <template>
   <div class="container">
     <h1>Edit Experience</h1>
-    <button v-on:click="createExperience()">Add Experience</button>
+    <button v-on:click="createHidden = !createHidden">Add Experience</button>
+    <div v-if="!createHidden">
+      Job Title:
+      <input type="text" v-model="newJobTitle" />
+      Company Name:
+      <input type="text" v-model="newCompanyName" />
+      Start Date:
+      <input type="date" v-model="newStartDate" />
+      End Date:
+      <input type="date" v-model="newEndDate" />
+      Details:
+      <input type="text" v-model="newDetails" />
+      <button v-on:click="createExperience">Submit</button>
+    </div>
     <div v-for="experience in experiences">
       <h3 class="job-title">{{ experience.job_title }}</h3>
       <h4 class="company-name">{{ experience.company_name }}</h4>
@@ -18,12 +31,12 @@
         <input type="date" v-model="experience.end_date" />
         Details:
         <input type="text" v-model="experience.details" />
-        <button v-on:click="updateExperience">Submit</button>
+        <button v-on:click="updateExperience(experience)">Submit</button>
       </div>
       <button v-on:click="updateHidden = !updateHidden">Update Experience</button>
       <button v-on:click="destroyEducation(experience)">Delete Experience</button>
     </div>
-    <router-link to="/">Back</router-link>
+    <div><router-link to="/">Back</router-link></div>
   </div>
 </template>
 
@@ -49,45 +62,51 @@ export default {
           details: "blah blah blah"
         }
       ],
-      updateHidden: true
+      newJobTitle: "",
+      newCompanyName: "",
+      newStartDate: "",
+      newEndDate: "",
+      newDetails: "",
+      updateHidden: true,
+      createHidden: true
     };
   },
-  // created: function() {
-  //   axios.get("/api/experience").then(response => {
-  //     this.experience = response.data;
-  //   });
-  // },
+  created: function() {
+    axios.get("/api/experience").then(response => {
+      this.experience = response.data;
+    });
+  },
   methods: {
-    // createExperience: function() {
-    //   console.log("Creating Education");
-    //   var params = {
-    //     start_date: this.newEducationStartDate,
-    //     end_date: this.newEducationEndDate,
-    //     degree: this.newEducationDegree,
-    //     university_name: this.newEducationUniversityName,
-    //     details: this.newEducationDetails
-    //   };
-    //   axios.post("/api/education", params).then(response => {
-    //     console.log("Success", response.data);
-    //   });
-    // },
-    updateEducation: function(education) {
+    updateExperience: function(experience) {
       var params = {
-        start_date: education.start_date,
-        end_date: education.end_date,
-        degree: education.degree,
-        university_name: education.university_name,
-        details: education.details
+        start_date: this.newStartDate,
+        end_date: this.newEndDate,
+        job_title: this.newJobTitle,
+        company_name: this.newCompanyName,
+        details: this.newDetails
       };
-      axios.patch("/api/education", params).then(response => {
-        console.log("Successfully updated", response.data);
-        education = response.data;
+      axios.patch("/api/experiences", params).then(response => {
+        experience = response.data;
         this.$router.push("/");
       });
     },
-    destroyEducation: function(education) {
-      axios.delete("/api/education").then(response => {
-        console.log("Successfully destroyed education", response.data);
+    updateEducation: function(experience) {
+      var params = {
+        start_date: experience.start_date,
+        end_date: experience.end_date,
+        degree: experience.degree,
+        university_name: experience.university_name,
+        details: experience.details
+      };
+      axios.patch("/api/experiences" + experience.id, params).then(response => {
+        console.log("Successfully updated", response.data);
+        experience = response.data;
+        this.$router.push("/");
+      });
+    },
+    destroyExperience: function(experience) {
+      axios.delete("/api/experiences" + experience.id).then(response => {
+        console.log("Successfully destroyed experience", response.data);
         this.$router.push("/");
       });
     }
