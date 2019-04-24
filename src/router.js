@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Experiences from "./views/Experiences.vue";
 
+
 Vue.use(Router);
 
 export default new Router({
