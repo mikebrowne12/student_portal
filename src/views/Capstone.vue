@@ -1,17 +1,23 @@
 <template>
   <div class="capstone-edit">
-    <div>
-      <h4>Edit Education Credentials</h4>
-      Description:
-      <input type="text" v-model="capstone.description" />
-      Project URL:
-      <input type="text" v-model="capstone.project_url" />
-      Screenshot URL:
-      <input type="text" v-model="capstone.screenshot_url" />
-      <button v-on:click="createCapstone(capstone)">Create</button>
-      <button v-on:click="updateCapstone(capstone)">Update Capstone</button>
-      <button v-on:click="destroyCapstone(capstone)">Delete</button>
-      <router-link to="/">Back</router-link>
+    <h1>Edit Experience</h1>
+    <button v-on:click="createCapstone()">Add Capstone</button>
+    <div v-for="capstone in capstone">
+      <h3 class="description">{{ capstone.description }}</h3>
+      <p>Project URL: {{ capstone.project_url }} 
+      <p>Screenshot URL: {{ capstone.screenshot_url }}</p>
+      <div v-if="!updateHidden">
+        <h4>Edit Capstone Credentials</h4>
+        Description:
+        <input type="text" v-model="capstone.description" />
+        Project URL:
+        <input type="text" v-model="capstone.project_url" />
+        Screenshot URL:
+        <input type="text" v-model="capstone.screenshot_url" />
+        <button v-on:click="updateCapstone(capstone)">Update Capstone</button>
+        <button v-on:click="destroyCapstone(capstone)">Delete</button>
+        <router-link to="/">Back</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -22,10 +28,17 @@ import axios from "axios";
 export default {
   data: function() {
     return {
-      capstone: {}, 
+      capstone: [
+        { description: "My Awesome Capstone", 
+          project_url: "my_project.url", 
+          screenshot_url: "my_screenshot.url"
+        }, 
+
+      ],
       newCapstoneDescription: "", 
       newCapstoneProjectUrl: "",
       newCapstoneScreenshotUrl: "",
+      updateHidden: false, 
 
     };
   },
