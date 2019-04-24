@@ -3,6 +3,8 @@ import Router from "vue-router";
 import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Experiences from "./views/Experiences.vue";
+import Education from "./views/Education.vue";
+
 
 
 Vue.use(Router);
@@ -33,6 +35,11 @@ export default new Router({
       path: "/experiences",
       name: "experiences",
       component: Experiences
+    }, 
+    {
+      path: "/education",
+      name: "education", 
+      component: Education
     }
   ]
 });
