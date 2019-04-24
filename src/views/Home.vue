@@ -18,7 +18,7 @@
       <p>{{ experience.start_date }}</p>
       <p>{{ experience.end_date }}</p>
       <p>{{ experience.details }}</p>
-      <button v-on:click="editSection('info')">Edit</button>
+      <router-link to="/experiences"><button>Edit</button></router-link>
     </div>
 
     <h1>Education</h1>
@@ -28,7 +28,7 @@
       <p>{{ education.start_date }}</p>
       <p>{{ education.end_date }}</p>
       <p>{{ education.details }}</p>
-      <button v-on:click="editSection('info')">Edit</button>
+      <router-link to="/education"><button>Edit</button></router-link>
     </div>
 
     <h2>Skills</h2>
@@ -42,7 +42,7 @@
       <p>{{ capstone.description }}</p>
       <p>{{ capstone.project_url }}</p>
       <p>{{ capstone.screenshot_url }}</p>
-      <button v-on:click="editSection('info')">Edit</button>
+      <router-link to="/capstone"><button>Edit</button></router-link>
     </div>
   </div>
 </template>
