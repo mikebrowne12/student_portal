@@ -4,6 +4,7 @@ import Home from "./views/Home.vue";
 import Login from "./views/Login.vue";
 import Experiences from "./views/Experiences.vue";
 import Education from "./views/Education.vue";
+import Capstone from "./views/Capstone.vue";
 
 
 
@@ -40,6 +41,11 @@ export default new Router({
       path: "/education",
       name: "education", 
       component: Education
+    }, 
+    {
+      path: "/capstone", 
+      name: "capstone", 
+      component: Capstone
     }
   ]
 });
